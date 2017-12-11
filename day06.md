@@ -30,3 +30,52 @@ A tall person that gets stuck on the third door, for example, will have access t
   // 1 2
   // 1
   ```
+
+### `this` binding
+
+  * **Example: Hard binding**
+  ``` JavaScript
+  function foo(something) {
+  	console.log( this.a, something );
+  	return this.a + something;
+  }
+
+  var obj = {
+	   a: 2
+  };
+
+  var bar = foo.bind( obj );
+
+  var b = bar( 3 ); // 2 3
+  console.log( b ); // 5
+  ```
+  * bind(..) returns a new function that is hard-coded to call the original function with the this context set as you specified.
+
+  Note: As of ES6, the hard-bound function produced by `bind(..)` has a `.name` property that derives from the original target function. For example: `bar = foo.bind(..)` should have a `bar.name` value of `"bound foo"`, which is the function call name that should show up in a stack trace.
+
+  * YDKJS `this` chapter explains as rules how the call-site determines where `this` will point during the execution of a function. Finding call site and inspecting which of these rules applies will point you to `this`.
+
+    * Default
+    * Implicit
+    * Explicit
+    * `new` binding
+
+
+      1. Is the function called with `new` (`new` binding)? If so, this is the newly constructed object.
+
+        `var bar = new foo()`
+
+      2. Is the function called with `call` or `apply` (explicit binding), even hidden inside a bind hard binding? If so, this is the explicitly specified object.
+
+        `var bar = foo.call( obj2 )`
+
+      3. Is the function called with a context (implicit binding), otherwise known as an owning or containing object? If so, this is that context object.
+
+        `var bar = obj1.foo()`
+
+      4. Otherwise, default the this (default binding). If in strict mode, pick undefined, otherwise pick the global object.
+
+        `var bar = foo()`
+
+
+**The lexical binding of an arrow-function cannot be overridden (even with new!).**
