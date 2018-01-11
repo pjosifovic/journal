@@ -1,0 +1,3 @@
+### Week 06 at CodeFellows
+
+* Front end and REACT is finally here. After long project week and slighty getting sick its exciting to start learning react. I've haven't had the chance to work with React but it's obviously taking over front end development. Its has introduced a concept called Component Based Architecture that it treating pieces of user interface as independent components or systems. It feels like when I started Code Fellows MVC architecture was very popular - i guess things have changed. Now all logic, design and helper methods exist in same level - generally the view. With these 2 labs that we had, I can see how this way of thinking can easily lead to convoluted view reducing its readability. 
